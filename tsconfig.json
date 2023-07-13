@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "outDir": "./dist",
+    "strict": true,
+    "moduleResolution": "Node"
+  },
+  "ts-node": {
+    "esm": true
+  },
+  "libs": ["ESNext"],
+  "include": ["src/**/*"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.config.ts"
+  ] /* Exclude files from compilation. */
+}

@@ -51,10 +51,44 @@ npm install
 ```bash
 # .env
 PORT=5000
+REDIS_URL=redis_urL
+PB_URL=pocketbase_url
 NODE_ENV=development
 ```
 
-4. Run the dev environment
+4. Start redis server
+
+```bash
+docker run -d --name redis-stack -p 6379:6379 -p 8001:8001 redis/redis-stack:latest
+```
+
+5. Start Pocketbase docker stack _(optional)_
+
+```yaml
+version: "3.7"
+services:
+  pocketbase:
+    image: ghcr.io/muchobien/pocketbase:latest
+    container_name: pocketbase
+    restart: always
+    command:
+      - --encryptionEnv #optional
+      - ENCRYPTION #optional
+    environment:
+      ENCRYPTION: example #optional
+    ports:
+      - "8090:8090"
+    volumes:
+      - ./data/data:/pb_data
+      - ./data/public:/pb_public #optional
+    healthcheck: #optional (recommended) since v0.10.0
+      test: wget --no-verbose --tries=1 --spider http://localhost:8090/api/health || exit 1
+      interval: 5s
+      timeout: 5s
+      retries: 5
+```
+
+6. Run the dev environment
 
 ```bash
 # run this command everytime you want to start the dev server

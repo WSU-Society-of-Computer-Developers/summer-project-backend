@@ -1,0 +1,41 @@
+version: "3.7"
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev # change this to Dockerfile.prod for production
+    stdin_open: true
+    volumes:
+      - ./src:/usr/src/app/src
+    container_name: api
+    restart: always
+    environment:
+      - WATCHPACK_POLLING=true
+    ports:
+      - 5000:5000
+  redis:
+    image: redis:alpine
+    container_name: redis
+    restart: always
+    ports:
+      - 6379:6379
+      - 8001:8001
+  pocketbase:
+    image: ghcr.io/muchobien/pocketbase:latest
+    container_name: pocketbase
+    restart: always
+    command:
+      - --encryptionEnv #optional
+      - ENCRYPTION #optional
+    environment:
+      ENCRYPTION: example #optional
+    ports:
+      - "8090:8090"
+    volumes:
+      - ./docker/pb/data:/pb_data
+      - ./docker/pb/public:/pb_public #optional
+    healthcheck: #optional (recommended) since v0.10.0
+      test: wget --no-verbose --tries=1 --spider http://localhost:8090/api/health || exit 1
+      interval: 5s
+      timeout: 5s
+      retries: 5

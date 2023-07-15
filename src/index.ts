@@ -1,6 +1,6 @@
 import app from "./app";
-import pb from "./pocketbase";
-import client from "./redis";
+import pb from "./utils/pocketbase";
+import client from "./utils/redis";
 
 const port = process.env.PORT;
 

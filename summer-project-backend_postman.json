@@ -1,0 +1,56 @@
+{
+    "info": {
+        "_postman_id": "cb48134e-e34a-4bc2-a797-161348ecd2d8",
+        "name": "summer-project-backend",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "GET all posts",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "{{url}}/posts",
+                    "path": [
+                        "posts"
+                    ],
+                    "host": [
+                        "{{url}}"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "GET specfic post",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "{{url}}/posts/so122i0tbidp663",
+                    "path": [
+                        "posts",
+                        "so122i0tbidp663"
+                    ],
+                    "host": [
+                        "{{url}}"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "GET all users",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "{{url}}/users",
+                    "path": [
+                        "users"
+                    ],
+                    "host": [
+                        "{{url}}"
+                    ]
+                }
+            }
+        }
+    ]
+}

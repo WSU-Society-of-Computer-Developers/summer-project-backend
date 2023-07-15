@@ -17,13 +17,13 @@ describe("GET /", () => {
   // });
   // TODO: make redis connection teardown work
   it("should return 200 OK", async () => {
-    const res = await request(app).get("/");
+    const res = await request(app).get("/api");
     expect(res.status).toBe(200);
-    expect(res.body.message).toEqual("Hello World");
+    expect(res.body.body).toEqual("OK");
   });
 
   it("should return all posts", async () => {
-    const res = await request(app).get("/posts");
+    const res = await request(app).get("/api/posts");
     expect(res.status).toBe(200);
     const posts = res.body.body;
     expect(posts).toHaveProperty("length");
